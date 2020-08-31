@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:stalkerapp/constants.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert' as convert;
+import 'package:stalkerapp/models/network.dart';
+import 'package:stalkerapp/models/starred_repo.dart';
+import 'package:stalkerapp/models/user.dart';
+import 'package:stalkerapp/screens/profile_screen.dart';
 
 class SearchScreen extends StatelessWidget {
   static const String id = '/search';
@@ -9,7 +11,6 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final String username = 'digocse';
-    final String url = 'https://api.github.com/users/${username}/starred';
 
     return Container(
       color: kBackgroundColor,
@@ -22,15 +23,28 @@ class SearchScreen extends StatelessWidget {
           ),
         ),
         onPressed: () async {
-          var response = await http.get(url);
-          if (response.statusCode == 200) {
-            var jsonResponse = convert.jsonDecode(response.body);
-            print(jsonResponse[0]["name"]);
+          var network = Network();
+          var starredRepos = await network.searchStarredRepos(username);
+          var user = await network.retrieveUser(username);
+
+          if (starredRepos.length != null && user != null) {
+            Navigator.pushNamed(
+              context,
+              ProfileScreen.id,
+              arguments:
+                  ScreenArguments(user: user, starredRepos: starredRepos),
+            );
           } else {
-            print('Request failed with status: ${response.statusCode}');
+            // TODO: show offline alert
           }
         },
       ),
     );
   }
+}
+
+class ScreenArguments {
+  ScreenArguments({this.user, this.starredRepos});
+  final User user;
+  final List<StarredRepo> starredRepos;
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stalkerapp/screens/profile_screen.dart';
 import 'package:stalkerapp/screens/search_screen.dart';
 
 void main() => runApp(MyApp());
@@ -11,6 +12,7 @@ class MyApp extends StatelessWidget {
       initialRoute: SearchScreen.id,
       routes: {
         SearchScreen.id: (context) => SearchScreen(),
+        ProfileScreen.id: (context) => ProfileScreen(),
       },
     );
   }
