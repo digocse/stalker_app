@@ -54,8 +54,7 @@ class Network {
     return User(
       nickname: jsonResponse["name"],
       url: jsonResponse["url"],
-      avatar:
-          Image.network(jsonResponse["avatar_url"], height: 100, width: 150),
+      avatar: NetworkImage(jsonResponse["avatar_url"]),
       bio: jsonResponse["bio"],
       location: jsonResponse["location"],
       email: jsonResponse["email"],

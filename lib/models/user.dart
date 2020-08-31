@@ -4,13 +4,13 @@ class User {
   User({
     @required this.nickname,
     this.avatar,
-    this.bio: '',
+    this.bio,
     this.location: '',
     this.email: '',
     @required this.url,
   });
   final String nickname;
-  final Image avatar;
+  final NetworkImage avatar;
   final String bio;
   final String location;
   final String email;
