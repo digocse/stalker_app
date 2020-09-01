@@ -27,31 +27,33 @@ class ProfileScreen extends StatelessWidget {
       ),
       backgroundColor: kBackgroundColor,
       body: SafeArea(
-        child: Column(
-          children: <Widget>[
-            ProfileHeader(user: user),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 12.0, horizontal: 50.0),
-              child: Divider(
-                color: Colors.white70,
-                thickness: 2.0,
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              ProfileHeader(user: user),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                    vertical: 12.0, horizontal: 50.0),
+                child: Divider(
+                  color: Colors.white70,
+                  thickness: 2.0,
+                ),
               ),
-            ),
-            Text(
-              'Repositórios Favoritos',
-              style: TextStyle(fontSize: 28.0),
-            ),
-            SizedBox(height: 10.0),
-            Expanded(
-              child: ListView.builder(
+              Text(
+                'Repositórios Favoritos',
+                style: TextStyle(fontSize: 28.0),
+              ),
+              SizedBox(height: 10.0),
+              ListView.builder(
+                  shrinkWrap: true,
+                  primary: false,
                   itemCount: starredRepos.length,
                   itemBuilder: (BuildContext context, int index) {
                     return new StarredRepoCard(
                         starredRepo: starredRepos[index]);
                   }),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
