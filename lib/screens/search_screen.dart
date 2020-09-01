@@ -77,7 +77,6 @@ class _SearchScreenState extends State<SearchScreen> {
                     var user = await network.retrieveUser(username);
 
                     if (user != null && starredRepos != null) {
-                      print(starredRepos);
                       Navigator.pushNamed(
                         context,
                         ProfileScreen.id,

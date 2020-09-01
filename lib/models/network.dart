@@ -11,7 +11,6 @@ class Network {
 
   Future<List<StarredRepo>> searchStarredRepos(String username) async {
     var url = '$kApiURL/users/$username/starred';
-    print(url);
     var response = await http.get(url);
 
     if (response.statusCode == 200) {
@@ -37,7 +36,6 @@ class Network {
 
   Future<User> retrieveUser(String username) async {
     var url = '$kApiURL/users/$username';
-    print(url);
     var response = await http.get(url);
 
     if (response.statusCode == 200) {

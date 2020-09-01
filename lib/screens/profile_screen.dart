@@ -16,18 +16,6 @@ class ProfileScreen extends StatelessWidget {
     List<StarredRepo> starredRepos = screenArguments.starredRepos;
     User user = screenArguments.user;
 
-    print(user.nickname);
-    print(user.avatar);
-    print(user.bio);
-    print(user.location);
-    print(user.email);
-    print(user.url);
-    print('===========');
-    print('Contador: ' + starredRepos.length.toString());
-    print(starredRepos);
-    print(starredRepos.first.name);
-    print(starredRepos.first.description);
-    print(starredRepos.first.watchersAmount);
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(40.0),
